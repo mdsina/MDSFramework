@@ -9,7 +9,7 @@
 /**
  * Class App_View_404
  */
-class App_View_404 extends App_Base_View_Abstract
+class App_View_404 extends App_View_Abstract
 {
 
 }

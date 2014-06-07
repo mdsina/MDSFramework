@@ -20,6 +20,8 @@ class App_Search_Google extends App_Search_Api
 
 
     /**
+     * Get search result
+     *
      * @param string $query
      * @param int $count - count of result records
      * @param int $start - start search position
@@ -35,7 +37,7 @@ class App_Search_Google extends App_Search_Api
             return array();
         }
 
-        $query = str_replace(' ', '+', $query);
+        $query = urlencode(str_replace(' ', '+', $query));
 
         $queryUrl = $this->_url . $rubric . '?v=1.0&q=' . $query . '&start=' . $start;
         $result = array();
@@ -44,13 +46,19 @@ class App_Search_Google extends App_Search_Api
         if ($count <= 8)
         {
             $queryUrl .= '&rsz=' . $count;
-            $body = file_get_contents($queryUrl);
-            $json = json_decode($body);
 
-            foreach ($json->responseData->results as $resultJson) {
-                $resultGoogle['url'] = $resultJson->url;
-                $resultGoogle['title'] = $resultJson->title;
-                $resultGoogle['content'] = $resultJson->content;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $queryUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $body = curl_exec($ch);
+            curl_close($ch);
+
+            $json = json_decode($body, true);
+
+            foreach ($json['responseData']['results'] as $resultJson) {
+                $resultGoogle['url'] = $resultJson['url'];
+                $resultGoogle['title'] = $resultJson['title'];
+                $resultGoogle['content'] = $resultJson['content'];
 
                 $result[] = $resultGoogle;
             }

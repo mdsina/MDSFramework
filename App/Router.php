@@ -13,14 +13,36 @@ class App_Router
 {
 
     /**
+     * App_Router instance
+     *
+     * @var App_Router
+     */
+    protected static $_instance;
+
+
+    /**
+     * Get App_Router instance
+     *
+     * @return App_Router
+     */
+    public static function getInstance() {
+        if (self::$_instance === null) {
+            self::$_instance = new self;
+        }
+
+        return self::$_instance;
+    }
+
+
+    /**
      * Start routing
      */
-    public static function run()
+    public function run()
 	{
         $request = new Framework_Request();
 
 		// Initialize default controller and action
-		$controllerName = self::_getControllerName($request, 'App_Controller_404');
+		$controllerName = $this->_getControllerName($request, 'App_Controller_404');
 		$actionName = $request->getActionName('view');
 
 		// Try to create controller
@@ -41,7 +63,7 @@ class App_Router
 	}
 
 
-    private static function _getControllerName($request = null, $default = null)
+    private function _getControllerName($request = null, $default = null)
     {
         require_once('App/routes.php');
 

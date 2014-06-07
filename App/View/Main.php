@@ -9,7 +9,7 @@
 /**
  * Class App_View_Main
  */
-class App_View_Main extends App_Base_View_Abstract
+class App_View_Main extends App_View_Abstract
 {
 
     /**

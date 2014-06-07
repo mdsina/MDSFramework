@@ -9,34 +9,23 @@
 /**
  * Class App_Model_Main
  */
-class App_Model_Main extends App_Base_Model_Abstract
+class App_Model_Main extends App_Model_Abstract
 {
     protected $_search;
 
     /**
      * Get prepared data
      *
+     * @param array $params
      * @return array|void
      */
-    public function getData()
+    public function getData($params = array())
     {
-        if (!$request = $this->getRequest(false)) {
-            $request = new Framework_Request();
-
-            if (!$request) {
-                return array();
-            }
-        }
-
-        $query = $request->getData(array('query'));
-
-        if (empty($query)) {
+        if (empty($params)) {
             return array();
         }
 
-        $api = $request->getData(array('api'));
-
-        switch ($api) {
+        switch ($params['api']) {
             case 'google' :
             default :
                 $this->_search = new App_Search_Google();
@@ -47,8 +36,7 @@ class App_Model_Main extends App_Base_Model_Abstract
             return array();
         }
 
-        $count = $request->getData(array('count'), 8);
-        $result = $this->_search->getResults($query, $count);
+        $result = $this->_search->getResults($params['query'], $params['count']);
 
         return $result;
     }

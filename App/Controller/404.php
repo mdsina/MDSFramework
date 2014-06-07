@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class App_Controller_404 extends App_Base_Controller_Abstract
+class App_Controller_404 extends App_Controller_Abstract
 {
     public function __construct()
     {

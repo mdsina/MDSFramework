@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class App_Controller_Main extends App_Base_Controller_Abstract
+class App_Controller_Main extends App_Controller_Abstract
 {
 
     /**
@@ -25,8 +25,12 @@ class App_Controller_Main extends App_Base_Controller_Abstract
 
     public function view()
     {
-        $fullData['data'] = $this->_model->getData();
-        $fullData['extended']['query'] = $this->_request->getData(array('query'), '');
+        $params['query'] = $this->_request->getData(array('query'), '');
+        $params['api'] = $this->_request->getData(array('api'), 'google');
+        $params['count'] = $this->_request->getData(array('count'), 8);
+
+        $fullData['data'] = $this->_model->getData($params);
+        $fullData['extended']['query'] = $params['query'];
 
         $this->_view->getContent($fullData);
     }
