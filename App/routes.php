@@ -5,6 +5,7 @@ $routes = array(
         'main',
         'search',
         'google',
-        'yandex'
+        'yandex',
+        ''
     )
 );

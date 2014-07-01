@@ -19,7 +19,7 @@ class App_Controller_Main extends App_Controller_Abstract
             $this->_request = $request;
         }
 
-        $this->_model = new App_Model_Main($this->_request);
+        $this->_model = new App_Model_Main();
         $this->_view = new App_View_Main();
     }
 

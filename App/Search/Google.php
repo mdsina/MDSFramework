@@ -12,7 +12,7 @@
  * It's not good idea for using, because we can do it on client side without server side
  * TO-DO: remove from release
  */
-class App_Search_Google extends App_Search_Api
+class App_Search_Google extends App_Search_Abstract
 {
 
     // Using Google Search AJAX API, because we can make unlimited query for it

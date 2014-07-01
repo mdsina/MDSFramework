@@ -11,6 +11,13 @@
  */
 class App_Model_Abstract
 {
+    protected $_di;
+
+    public function __construct()
+    {
+       // $this->_di = $di;
+    }
+
     /**
      * prepare data from database/storage and get it
      */
