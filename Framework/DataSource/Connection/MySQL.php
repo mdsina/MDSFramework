@@ -65,36 +65,6 @@ class Framework_DataSource_Connection_MySQL implements Framework_DataSource_Conn
 
 
     /**
-     * where in query
-     *
-     * syntax like this (..->where('someValue > ?', 3), ...->where('someValue IN(?)', [1,2,3,4]))
-     *
-     * @param $field
-     * @param $value
-     */
-    public function where($field, $value)
-    {
-        $value = array($value);
-        $this->_where[] = preg_replace('/\?/', implode(',', $value) , $field);
-    }
-
-
-    /**
-     * select fields from db
-     *
-     * @param $fields
-     */
-    public function select($fields)
-    {
-        if (empty($fields)) {
-            $fields = ['*'];
-        }
-
-        $this->_select = array_merge($this->_select, $fields);
-    }
-
-
-    /**
      * Get connection or new instance of it
      *
      * But now provide only one connection
