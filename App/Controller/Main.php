@@ -25,9 +25,9 @@ class App_Controller_Main extends App_Controller_Abstract
 
     public function view()
     {
-        $params['query'] = $this->_request->getData(array('query'), '');
-        $params['api'] = $this->_request->getData(array('api'), 'google');
-        $params['count'] = $this->_request->getData(array('count'), 8);
+        $params['query'] = $this->_request->getData(['query'], '');
+        $params['api'] = $this->_request->getData(['api'], 'google');
+        $params['count'] = $this->_request->getData(['count'], 8);
 
         $fullData['data'] = $this->_model->getData($params);
         $fullData['extended']['query'] = $params['query'];

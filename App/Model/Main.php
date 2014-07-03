@@ -19,10 +19,10 @@ class App_Model_Main extends App_Model_Abstract
      * @param array $params
      * @return array|void
      */
-    public function getData($params = array())
+    public function getData($params = [])
     {
         if (empty($params)) {
-            return array();
+            return [];
         }
 
         switch ($params['api']) {
@@ -33,7 +33,7 @@ class App_Model_Main extends App_Model_Abstract
         }
 
         if (!$this->_search) {
-            return array();
+            return [];
         }
 
         $result = $this->_search->getResults($params['query'], $params['count']);

@@ -34,13 +34,13 @@ class App_Search_Google extends App_Search_Abstract
         $start = (int) $start;
 
         if (empty($query) || $count == 0) {
-            return array();
+            return [];
         }
 
         $query = urlencode(str_replace(' ', '+', $query));
 
         $queryUrl = $this->_url . $rubric . '?v=1.0&q=' . $query . '&start=' . $start;
-        $result = array();
+        $result = [];
 
         // by default we can get 4 records, but we can get more records per request by rsz[0-8]
         if ($count <= 8)
