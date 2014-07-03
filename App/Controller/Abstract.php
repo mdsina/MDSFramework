@@ -21,7 +21,7 @@ class App_Controller_Abstract
      *
      * @param Framework_Request $request
      */
-    public function __construct(Framework_DI $di = null, $request = null)
+    public function __construct(Framework_Di $di = null, $request = null)
     {
         $this->_view = new App_View_Abstract();
         $this->_model = new App_Model_Abstract($di);

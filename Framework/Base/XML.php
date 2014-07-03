@@ -22,7 +22,7 @@ class Framework_Base_XML
 
 
     /**
-     * Constructor, initialize writer or|and reader
+     * Constructor, initialize writer
      *
      * @param array $types (allow types: write)
      */

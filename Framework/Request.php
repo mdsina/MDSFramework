@@ -27,11 +27,27 @@ class Framework_Request
 
 
     /**
+     * @var Framework_Request
+     */
+    protected static $_instance;
+
+
+    /**
      * Constructor
      */
-    public function __construct()
+    protected function __construct()
     {
         $this->_prepareQuery();
+    }
+
+
+    public static function getInstance()
+    {
+        if (self::$_instance === null) {
+            self::$_instance = new self;
+        }
+
+        return self::$_instance;
     }
 
 

@@ -8,6 +8,5 @@
 
 interface Framework_Templating_Interface
 {
-    public function render($template, $data);
-    public function generate($data);
+    public function render($template, array $data);
 }

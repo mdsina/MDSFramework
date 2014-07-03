@@ -12,6 +12,8 @@ class Framework_Params {
      */
     protected $_params;
 
+    protected static $_instance;
+
 
     /**
      * Constructor, loading params from file
@@ -54,6 +56,23 @@ class Framework_Params {
 
 
     /**
+     * get instance of Params
+     *
+     * @param $path
+     * @return Framework_Params
+     */
+    public static function getInstance($path)
+    {
+        if (self::$_instance === null) {
+            self::$_instance = new self($path);
+        }
+
+        return self::$_instance;
+    }
+
+
+
+    /**
      * Set our parameters
      *
      * @param array $params
@@ -88,5 +107,7 @@ class Framework_Params {
         }
 
         return $result;
+
+        var_dump($result);
     }
 } 

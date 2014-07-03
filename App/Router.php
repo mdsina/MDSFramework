@@ -37,9 +37,9 @@ class App_Router
     /**
      * Start routing
      */
-    public function run()
+    public function run(Framework_Di $di)
 	{
-        $request = new Framework_Request();
+        $request = $di->get('Request');
 
 		// Initialize default controller and action
 		$controllerName = $this->_getControllerName($request, 'App_Controller_404');

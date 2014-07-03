@@ -13,6 +13,8 @@ class App_View_Abstract
 {
     protected $_data;
 
+
+
     /**
      * Constructor
      *
