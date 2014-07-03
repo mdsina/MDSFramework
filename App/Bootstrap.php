@@ -8,8 +8,8 @@ $di->set('Params', function() {
 });
 
 $di->set('Templating', function() use ($di) {
-    $type = $di->get('Params')->getParams(['templating']);
-    return Framework_Templating_Factory::getInstance($type['templating']);
+    $type = $di->get('Params')->getParams('templating');
+    return Framework_Templating_Factory::getInstance($type);
 });
 
 $di->set('Request', function() {

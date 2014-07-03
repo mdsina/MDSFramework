@@ -90,8 +90,10 @@ class Framework_Params {
      * @param null $default
      * @return array|null
      */
-    public function getParams(array $filedList = [], $default = null)
+    public function getParams($filedList, $default = null)
     {
+        $filedList = array($filedList);
+
         if (!$this->_params) {
             return $default;
         }
@@ -106,8 +108,11 @@ class Framework_Params {
             $result[$fieldName] = !empty($this->_params[$fieldName]) ? $this->_params[$fieldName] : null;
         }
 
-        return $result;
+        if (count($result) == 1) {
+            // use PHP!! this index is safe
+            $result = array_values($result)[0];
+        }
 
-        var_dump($result);
+        return $result;
     }
 } 
