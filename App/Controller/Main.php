@@ -13,14 +13,12 @@ class App_Controller_Main extends App_Controller_Abstract
      *
      * @param Framework_Request $request
      */
-    public function __construct($request = null)
+    public function __construct(Framework_Di $di, Framework_Request $request)
     {
-        if ($request instanceof Framework_Request) {
-            $this->_request = $request;
-        }
-
+        $this->_di = $di;
+        $this->_request = $request;
         $this->_model = new App_Model_Main();
-        $this->_view = new App_View_Main();
+        $this->_view = new App_View_Main($di->get('Templating'));
     }
 
     public function view()

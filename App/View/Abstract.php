@@ -12,7 +12,7 @@
 class App_View_Abstract
 {
     protected $_data;
-
+    protected $_templater;
 
 
     /**
@@ -20,8 +20,10 @@ class App_View_Abstract
      *
      * @param null|array $data
      */
-    public function __construct($data = null)
+    public function __construct(Framework_Templating_Factory $templater, $data = null)
     {
+        $this->_templater = $templater;
+
         if ($data) {
             $this->setData($data);
         }
@@ -39,9 +41,13 @@ class App_View_Abstract
     public function render($templateName, $extendedData = null)
 	{
         $data = $this->getData();
-        $extended = $extendedData;
 
-		include($templateName);
+		$resultData = [
+            'data' => $data,
+            'extended' => $extendedData
+        ];
+
+        $this->_templater->render($templateName, $resultData);
 	}
 
 

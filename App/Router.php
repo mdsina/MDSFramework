@@ -36,6 +36,9 @@ class App_Router
 
     /**
      * Start routing
+     *
+     * @param Framework_Di $di
+     * @throws Framework_Exception_Page
      */
     public function run(Framework_Di $di)
 	{
@@ -47,9 +50,9 @@ class App_Router
 
 		// Try to create controller
         try {
-            $controller = new $controllerName($request);
+            $controller = new $controllerName($di, $request);
         } catch (Framework_Exception_Class $e) {
-            $error = new App_Controller_404();
+            $error = new App_Controller_404($di);
             $error->view();
             exit();
         }
@@ -63,6 +66,13 @@ class App_Router
 	}
 
 
+    /**
+     * Get Controller name from routes map
+     *
+     * @param null $request
+     * @param null $default
+     * @return int|null|string
+     */
     private function _getControllerName($request = null, $default = null)
     {
         require_once('App/routes.php');

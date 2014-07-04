@@ -7,9 +7,9 @@
 
 class App_Controller_404 extends App_Controller_Abstract
 {
-    public function __construct()
+    public function __construct(Framework_Di $di)
     {
-        $this->_view = new App_View_404();
+        $this->_view = new App_View_404($di->get('Templating'));
         return $this;
     }
 
