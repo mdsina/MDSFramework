@@ -41,7 +41,6 @@ class Framework_Templating_XSLT implements Framework_Templating_Interface
             echo $e->getMessage();
         }
 
-
         // ugh...
         $templateXmlData = new DOMDocument('1.0', 'UTF-8');
 
@@ -52,6 +51,6 @@ class Framework_Templating_XSLT implements Framework_Templating_Interface
         $processor->importStylesheet($this->_xsl);
 
         // I really don't know true it or false
-        echo $processor->transformToXml($templateXmlData);
+        echo $processor->transformToDoc($templateXmlData)->saveHTML();
     }
 }

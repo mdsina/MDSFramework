@@ -16,10 +16,9 @@ class App_Model_Energo extends App_Model_Abstract
     /**
      * Get prepared data
      *
-     * @param array $params
      * @return array|void
      */
-    public function getData($params = [])
+    public function getData()
     {
         $result = [
             'persons' => [

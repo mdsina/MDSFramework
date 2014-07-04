@@ -18,4 +18,13 @@ class App_Controller_Energo extends App_Controller_Abstract
         $this->_model = new App_Model_Energo();
         $this->_view = new App_View_Energo($di->get('Templating'));
     }
+
+
+    /**
+     * Default action
+     */
+    public function view()
+    {
+        $this->_view->getContent($this->_model->getData());
+    }
 }
