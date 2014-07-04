@@ -47,6 +47,12 @@ class Framework_Templating_Factory
     }
 
 
+    public static  function getNewInstance($type)
+    {
+        return new self($type);
+    }
+
+
     /**
      * Change templater
      *

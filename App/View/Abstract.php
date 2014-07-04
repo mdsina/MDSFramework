@@ -40,10 +40,8 @@ class App_View_Abstract
      */
     public function render($templateName, $extendedData = null)
 	{
-        $data = $this->getData();
-
 		$resultData = [
-            'data' => $data,
+            'data' => $this->getData(),
             'extended' => $extendedData
         ];
 

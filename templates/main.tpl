@@ -10,7 +10,7 @@
         <form id="searchForm" action="/search/" method="get">
             <h1>Поиск</h1>
             <fieldset>
-                <input id="s" type="text" value="<?php echo $extended['query']; ?>" name="query" />
+                <input id="s" type="text" value="<?php echo $renderData['extended']['query']; ?>" name="query" />
                 <input type="submit" value="Submit" id="submitButton" />
                 <div id="searchInContainer">
                     <input type="radio" name="api" value="google" id="searchSite" checked />
@@ -24,8 +24,8 @@
         <div id="resultsDiv">
             <div style="display: block;" class="pageContainer">
                 <?php
-                    if (!empty($data)) {
-                        foreach ($data as $item) {
+                    if (!empty($renderData['data'])) {
+                        foreach ($renderData['data'] as $item) {
 
                 ?>
                 <div class="webResult">
