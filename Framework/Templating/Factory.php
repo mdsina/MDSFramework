@@ -24,7 +24,7 @@ class Framework_Templating_Factory
      */
     protected function __construct($type)
     {
-        $defaultTemplater = 'Framework_Templating_XSLT';
+        $defaultTemplater = 'Framework_Templating_Native';
         if (class_exists('Framework_Templating_' . $type)) {
             $defaultTemplater = 'Framework_Templating_' . $type;
         }
@@ -47,7 +47,7 @@ class Framework_Templating_Factory
     }
 
 
-    public static  function getNewInstance($type)
+    public static function getNewInstance($type)
     {
         return new self($type);
     }
