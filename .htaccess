@@ -1,2 +1,7 @@
-﻿RewriteEngine On
-RewriteRule ^index\.php$ / [L,R=301]
+﻿Options +FollowSymLinks -MultiViews
+
+RewriteEngine On
+RewriteCond %{THE_REQUEST} ^.*/index(\.*)
+RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+RewriteRule !^static($|/) index.php [L]
