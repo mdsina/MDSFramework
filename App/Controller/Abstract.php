@@ -13,7 +13,6 @@ class App_Controller_Abstract
 {
     protected $_model;
     protected $_view;
-    protected $_request;
     protected $_di;
 
     /**
@@ -21,12 +20,11 @@ class App_Controller_Abstract
      *
      * @param Framework_Request $request
      */
-    public function __construct(Framework_Di $di, Framework_Request $request)
+    public function __construct(Framework_Di $di)
     {
         $this->_view = new App_View_Abstract($di->get('Templating'));
         $this->_model = new App_Model_Abstract($di);
         $this->_di = $di;
-        $this->_request = $request;
     }
 
 

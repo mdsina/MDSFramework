@@ -11,18 +11,37 @@
  */
 class Framework_Request
 {
-    // user's query
+    /**
+     * @var string
+     */
     protected $_query;
 
-    // full request
+
+    /**
+     * prepared URI
+     *
+     * @var string
+     */
     protected $_request;
 
+
+    /**
+     * @var string
+     */
     protected $_actionName;
 
-    // all path tokens without query
+
+    /**
+     * URI tokens without parameters
+     * @var array
+     */
     protected $_path = [];
 
-    // data from POST or GET query
+
+    /**
+     * Parameters from POST and GET
+     * @var array
+     */
     protected $_data = [];
 
 
@@ -41,6 +60,11 @@ class Framework_Request
     }
 
 
+    /**
+     * get singleton class instance
+     *
+     * @return Framework_Request
+     */
     public static function getInstance()
     {
         if (self::$_instance === null) {
@@ -114,6 +138,8 @@ class Framework_Request
      */
     public function getData($filedList = [], $default = null)
     {
+        $filedList = array($filedList);
+
         if (empty($filedList)) {
             return $this->_data;
         }

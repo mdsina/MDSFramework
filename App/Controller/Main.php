@@ -11,21 +11,27 @@ class App_Controller_Main extends App_Controller_Abstract
     /**
      * Constructor
      *
-     * @param Framework_Request $request
+     * @param Framework_Di $di
      */
-    public function __construct(Framework_Di $di, Framework_Request $request)
+    public function __construct(Framework_Di $di)
     {
         $this->_di = $di;
-        $this->_request = $request;
         $this->_model = new App_Model_Main();
         $this->_view = new App_View_Main();
     }
 
+
+    /**
+     * Default action
+     *
+     * @return $this|void
+     */
     public function view()
     {
-        $params['query'] = $this->_request->getData(['query'], '');
-        $params['api'] = $this->_request->getData(['api'], 'google');
-        $params['count'] = $this->_request->getData(['count'], 8);
+        $request = $this->_di->get('Request');
+        $params['query'] = $request->getData('query', '');
+        $params['api'] = $request->getData('api', 'google');
+        $params['count'] = $request->getData('count', 8);
 
         $fullData['data'] = $this->_model->getData($params);
         $fullData['extended']['query'] = $params['query'];

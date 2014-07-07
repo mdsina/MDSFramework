@@ -97,10 +97,10 @@ class Framework_Base_XML
     /**
      * Remove from array 'node_*' and add it as a simple element
      *
-     * @param $array
+     * @param array $array
      * @return array
      */
-    protected function _fixArray($array)
+    protected function _fixArray(array $array)
     {
         $result = [];
 

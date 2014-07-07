@@ -54,7 +54,7 @@ class App_View_Abstract
      *
      * @param array $data
      */
-    public function setData($data = array())
+    public function setData(array $data = [])
     {
         $this->_data = $data;
     }

@@ -20,7 +20,7 @@ class Framework_Templating_Factory
 
 
     /**
-     * @param $type
+     * @param string $type
      */
     protected function __construct($type)
     {
@@ -34,7 +34,7 @@ class Framework_Templating_Factory
 
 
     /**
-     * @param $type
+     * @param string $type
      * @return Framework_Templating_Factory
      */
     public static function getInstance($type)
@@ -47,6 +47,10 @@ class Framework_Templating_Factory
     }
 
 
+    /**
+     * @param string $type
+     * @return Framework_Templating_Factory
+     */
     public static function getNewInstance($type)
     {
         return new self($type);
@@ -67,7 +71,7 @@ class Framework_Templating_Factory
     /**
      * Render template
      *
-     * @param $template
+     * @param string $template
      * @param array $data
      */
     public function render($template, array $data)

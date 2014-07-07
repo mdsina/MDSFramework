@@ -21,6 +21,12 @@ class App_Router
 
 
     /**
+     * @var Framework_Di
+     */
+    protected $_di;
+
+
+    /**
      * Get App_Router instance
      *
      * @return App_Router
@@ -42,10 +48,12 @@ class App_Router
      */
     public function run(Framework_Di $di)
 	{
+
+        $this->_di = $di;
         $request = $di->get('Request');
 
 		// Initialize default controller and action
-		$controllerName = $this->_getControllerName($request, 'App_Controller_404');
+		$controllerName = $this->_getControllerName('App_Controller_404');
 		$actionName = $request->getActionName('view');
 
 		// Try to create controller
@@ -69,19 +77,14 @@ class App_Router
     /**
      * Get Controller name from routes map
      *
-     * @param null $request
      * @param null $default
      * @return int|null|string
      */
-    private function _getControllerName($request = null, $default = null)
+    private function _getControllerName($default = null)
     {
-        require_once('App/routes.php');
+        require_once($this->_di->get('Params')->getParams('routes_file'));
 
-        if (!$request) {
-            return null;
-        }
-
-        $path = $request->getRequest();
+        $path = $this->_di->get('Request')->getRequest();
 
         foreach ($routes as $controller => $route) {
             if (in_array($path, $route)) {

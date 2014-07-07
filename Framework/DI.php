@@ -9,7 +9,7 @@ class Framework_Di
 {
 
     /**
-     * Services, store anonymous function
+     * Services, store anonymous functions
      *
      * @var array
      */
@@ -19,23 +19,23 @@ class Framework_Di
     /**
      * Store service
      *
-     * @param $service
-     * @param $function
+     * @param string $serviceName
+     * @param $function - anonymous function
      */
-    public function set($service, $function)
+    public function set($serviceName, $function)
     {
-        $this->_services[$service] = $function;
+        $this->_services[$serviceName] = $function;
     }
 
 
     /**
      * Call service
      *
-     * @param $service
-     * @return mixed
+     * @param string $serviceName
+     * @return anonymous function result stored in _services
      */
-    public function get($service)
+    public function get($serviceName)
     {
-        return $this->_services[$service]($this);
+        return $this->_services[$serviceName]($this);
     }
 }
