@@ -15,7 +15,7 @@ class Framework_Base_String
      * @param bool $lowerStrEnd
      * @return string
      */
-    static public function mbUcFirst($str, $encoding = "UTF-8", $lowerStrEnd = false) {
+    public static function mbUcFirst($str, $encoding = "UTF-8", $lowerStrEnd = false) {
         $firstLetter = mb_strtoupper(mb_substr($str, 0, 1, $encoding), $encoding);
         $strEnd = "";
 

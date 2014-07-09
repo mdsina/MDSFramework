@@ -28,7 +28,7 @@ class App_Controller_Main extends App_Controller_Abstract
      */
     public function view()
     {
-        $request = $this->_di->get('Request');
+        $request = $this->_di->getStatic('Request');
         $params['query'] = $request->getData('query', '');
         $params['api'] = $request->getData('api', 'google');
         $params['count'] = $request->getData('count', 8);

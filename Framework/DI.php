@@ -17,6 +17,14 @@ class Framework_Di
 
 
     /**
+     * Instances/result of called service
+     *
+     * @var array
+     */
+    protected $_instances = [];
+
+
+    /**
      * Store service
      *
      * @param string $serviceName
@@ -29,13 +37,39 @@ class Framework_Di
 
 
     /**
-     * Call service
+     * Call service likes factory
      *
      * @param string $serviceName
-     * @return anonymous function result stored in _services
+     * @return mixed - return anonymous function result
+     * @throws Framework_Exception_InvalidArgument
      */
     public function get($serviceName)
     {
+        if (!isset($serviceName, $this->_services)) {
+            throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
+        }
+
         return $this->_services[$serviceName]($this);
+    }
+
+
+    /**
+     * Call service statically
+     *
+     * @param $serviceName
+     * @return callable
+     * @throws Framework_Exception_InvalidArgument
+     */
+    public function getStatic($serviceName)
+    {
+        if (!isset($serviceName, $this->_services)) {
+            throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
+        }
+
+        if (!isset($this->_instances[$serviceName])) {
+            $this->_instances[$serviceName] = $this->_services[$serviceName]($this);
+        }
+
+        return $this->_instances[$serviceName];
     }
 }

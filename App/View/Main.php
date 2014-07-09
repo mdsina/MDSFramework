@@ -14,7 +14,7 @@ class App_View_Main extends App_View_Abstract
 
     public function __construct()
     {
-        $this->_templater = Framework_Templating_Factory::getNewInstance('Native');
+        $this->_templater = new Framework_Templating_Factory('Native');
     }
 
     /**

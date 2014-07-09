@@ -46,32 +46,11 @@ class Framework_Request
 
 
     /**
-     * @var Framework_Request
-     */
-    protected static $_instance;
-
-
-    /**
      * Constructor
      */
-    protected function __construct()
+    public function __construct()
     {
         $this->_prepareQuery();
-    }
-
-
-    /**
-     * get singleton class instance
-     *
-     * @return Framework_Request
-     */
-    public static function getInstance()
-    {
-        if (self::$_instance === null) {
-            self::$_instance = new self;
-        }
-
-        return self::$_instance;
     }
 
 

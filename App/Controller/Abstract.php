@@ -22,7 +22,7 @@ class App_Controller_Abstract
      */
     public function __construct(Framework_Di $di)
     {
-        $this->_view = new App_View_Abstract($di->get('Templating'));
+        $this->_view = new App_View_Abstract($di->getStatic('Templating'));
         $this->_model = new App_Model_Abstract($di);
         $this->_di = $di;
     }

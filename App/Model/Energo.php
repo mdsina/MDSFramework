@@ -20,6 +20,8 @@ class App_Model_Energo extends App_Model_Abstract
      */
     public function getData()
     {
+
+        //test data
         $result = [
             'persons' => [
                 'I',

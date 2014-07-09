@@ -100,7 +100,7 @@ class Framework_Base_XML
      * @param array $array
      * @return array
      */
-    protected function _fixArray(array $array)
+    protected static function _fixArray(array $array)
     {
         $result = [];
 
@@ -110,12 +110,12 @@ class Framework_Base_XML
 
             if (!empty($matches)) {
                 if (is_array($value)) {
-                    $result[] = $this->_fixArray($value);
+                    $result[] = self::_fixArray($value);
                 } else {
                     $result[] = $value;
                 }
             } elseif (is_array($value)) {
-                $result[$key] = $this->_fixArray($value);
+                $result[$key] = self::_fixArray($value);
             } else {
                 $result[$key] = $value;
             }

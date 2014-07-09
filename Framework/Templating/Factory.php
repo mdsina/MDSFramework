@@ -14,15 +14,9 @@ class Framework_Templating_Factory
 
 
     /**
-     * @var Framework_Templating_Factory
-     */
-    protected static $_instance;
-
-
-    /**
      * @param string $type
      */
-    protected function __construct($type)
+    public function __construct($type)
     {
         $defaultTemplater = 'Framework_Templating_Native';
         if (class_exists('Framework_Templating_' . $type)) {
@@ -30,30 +24,6 @@ class Framework_Templating_Factory
         }
 
         $this->_templater = new $defaultTemplater;
-    }
-
-
-    /**
-     * @param string $type
-     * @return Framework_Templating_Factory
-     */
-    public static function getInstance($type)
-    {
-        if (self::$_instance === null) {
-            self::$_instance = new self($type);
-        }
-
-        return self::$_instance;
-    }
-
-
-    /**
-     * @param string $type
-     * @return Framework_Templating_Factory
-     */
-    public static function getNewInstance($type)
-    {
-        return new self($type);
     }
 
 

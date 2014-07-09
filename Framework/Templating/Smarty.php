@@ -16,6 +16,11 @@
  */
 class Framework_Templating_Smarty implements Framework_Templating_Interface
 {
+    public function __construct()
+    {
+
+    }
+
     public function render($template, array $data)
     {
 

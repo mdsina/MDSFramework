@@ -50,7 +50,6 @@ class Framework_Templating_XSLT implements Framework_Templating_Interface
         $processor = new XSLTProcessor();
         $processor->importStylesheet($this->_xsl);
 
-        // I really don't know true it or false
         echo $processor->transformToDoc($templateXmlData)->saveHTML();
     }
 }
