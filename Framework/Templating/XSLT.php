@@ -11,6 +11,7 @@ class Framework_Templating_XSLT implements Framework_Templating_Interface
     protected $_xml;
     protected $_xsl;
 
+    use Framework_Templating_Base;
 
     /**
      * Constructor, Initialize Framework_Base_XML and xsl DOMDocument
@@ -21,6 +22,15 @@ class Framework_Templating_XSLT implements Framework_Templating_Interface
 
         //need info about charset, but f#ck it, I have no time to provide it :\
         $this->_xsl = new DOMDocument(null, 'UTF-8');
+
+    }
+
+
+    /**
+     * Initialize
+     */
+    public function Initialize()
+    {
 
     }
 

@@ -44,10 +44,14 @@ abstract class Framework_Base_View
      */
     public function render($templateName, $extendedData = null)
 	{
+
+
 		$resultData = [
             'data' => $this->getData(),
             'extended' => $extendedData
         ];
+
+        //var_dump($resultData);
 
         $this->_templater->render($templateName, $resultData);
 	}

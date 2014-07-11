@@ -19,12 +19,16 @@ class Framework_Templating_Factory
     private $_type;
 
 
+    private $_params = [];
+
+
     /**
      * @param string $type
      */
-    public function __construct($type)
+    public function __construct($type, $params = [])
     {
         $this->setType($type);
+        $this->_params = $params;
     }
 
 
@@ -89,5 +93,7 @@ class Framework_Templating_Factory
         }
 
         $this->_templater = new $defaultTemplater;
+        $this->_templater->setParams($this->_params);
+        $this->_templater->Initialize();
     }
 }

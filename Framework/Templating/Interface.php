@@ -9,4 +9,5 @@
 interface Framework_Templating_Interface
 {
     public function render($template, array $data);
+    public function Initialize();
 }

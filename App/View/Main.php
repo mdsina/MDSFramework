@@ -12,11 +12,12 @@
 class App_View_Main extends Framework_Base_View
 {
 
-    public function __construct()
+    public function __construct(array $params = [])
     {
-        $factory = new Framework_Templating_Factory('Native');
+        $factory = new Framework_Templating_Factory('Smarty', $params);
         $factory->initTemplater();
         $this->setTemplater($factory->getTemplater());
+        $this->getTemplater()->setCaching(false);
     }
 
     /**

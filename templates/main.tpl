@@ -10,7 +10,7 @@
         <form id="searchForm" action="/search/" method="get">
             <h1>Поиск</h1>
             <fieldset>
-                <input id="s" type="text" value="<?php echo $renderData['extended']['query']; ?>" name="query" />
+                <input id="s" type="text" value="{$data.extended.query|escape}" name="query" />
                 <input type="submit" value="Submit" id="submitButton" />
                 <div id="searchInContainer">
                     <input type="radio" name="api" value="google" id="searchSite" checked />
@@ -21,30 +21,25 @@
             </fieldset>
         </form>
 
-        <div id="resultsDiv">
-            <div style="display: block;" class="pageContainer">
-                <?php
-                    if (!empty($renderData['data'])) {
-                        foreach ($renderData['data'] as $item) {
-
-                ?>
-                <div class="webResult">
-                    <h2>
-                        <a href="<?php echo $item['url']; ?>" target="_blank">
-                            <?php echo $item['title']; ?>
-                        </a>
-                    </h2>
-                    <p>
-                        <?php echo $item['content']; ?>
-                    </p>
+        {if !empty($data.data)}
+            <div id="resultsDiv">
+                <div style="display: block;" class="pageContainer">
+                    {foreach from=$data.data item=itm}
+                        <div class="webResult">
+                            <h2>
+                                <a href="{$itm.url}" target="_blank">
+                                    {$itm.title}
+                                </a>
+                            </h2>
+                            <p>
+                                {$itm.content}
+                            </p>
+                        </div>
+                    {/foreach}
+                    <div class="clear"></div>
                 </div>
-                <?php
-                    }
-                }
-                ?>
-                <div class="clear"></div>
             </div>
-        </div>
+        {/if}
     </div>
 </body>
 </html>

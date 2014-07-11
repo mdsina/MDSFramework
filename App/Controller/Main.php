@@ -17,7 +17,7 @@ class App_Controller_Main extends Framework_Base_Controller
     {
         $this->setDi($di);
         $this->setModel(new App_Model_Main());
-        $this->setView(new App_View_Main());
+        $this->setView(new App_View_Main($di->get('Params')->getParams('smarty')));
     }
 
 

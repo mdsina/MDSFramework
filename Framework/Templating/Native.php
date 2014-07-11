@@ -9,6 +9,8 @@
 class Framework_Templating_Native implements Framework_Templating_Interface
 {
 
+    use Framework_Templating_Base;
+
     /**
      * @param string $template
      * @param array $data
@@ -17,5 +19,11 @@ class Framework_Templating_Native implements Framework_Templating_Interface
     {
         $renderData = $data;
         include($template);
+    }
+
+
+    public function Initialize()
+    {
+
     }
 }

@@ -22,8 +22,6 @@ abstract class Framework_Base_Controller
      */
     public function __construct(Framework_Di $di)
     {
-        $this->_view = new Framework_Base_View($di->get('Templating'));
-        $this->_model = new Framework_Base_Model($di);
         $this->_di = $di;
     }
 
