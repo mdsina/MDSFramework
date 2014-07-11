@@ -49,7 +49,7 @@ class App_Router
     public function run(Framework_Di $di)
 	{
         $this->_di = $di;
-        $request = $di->getStatic('Request');
+        $request = $di->get('Request');
 
 		// Initialize default controller and action
 		$controllerName = $this->_getControllerName('App_Controller_404');
@@ -64,12 +64,9 @@ class App_Router
             exit();
         }
 
-        // Call action from controller
-		if (method_exists($controller, $actionName)) {
-		    $controller->$actionName();
-		} else {
-			throw new Framework_Exception_Page();
-		}
+        if (!$controller->$actionName()) {
+            throw new Framework_Exception_Page(sprintf('OOps, action "%s" not found', $actionName));
+        }
 	}
 
 
@@ -81,9 +78,9 @@ class App_Router
      */
     private function _getControllerName($default = null)
     {
-        require_once($this->_di->getStatic('Params')->getParams('routes_file'));
+        require_once($this->_di->get('Params')->getParams('routes_file'));
 
-        $path = $this->_di->getStatic('Request')->getRequest();
+        $path = $this->_di->get('Request')->getRequest();
 
         foreach ($routes as $controller => $route) {
             if (in_array($path, $route)) {

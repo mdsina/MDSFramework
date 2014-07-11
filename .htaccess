@@ -4,4 +4,5 @@ RewriteEngine On
 RewriteCond %{THE_REQUEST} ^.*/index(\.*)
 RewriteRule ^(.*)index.php$ /$1 [R=301,L]
 
+RewriteCond %{REQUEST_URI} !\.ico [NC]
 RewriteRule !^static($|/) index.php [L]

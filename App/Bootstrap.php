@@ -1,6 +1,5 @@
 <?php
 
-// Try to start routing
 $di = new Framework_Di();
 
 $di->set('Params', function() {
@@ -8,8 +7,10 @@ $di->set('Params', function() {
 });
 
 $di->set('Templating', function() use ($di) {
-    $type = $di->getStatic('Params')->getParams('templating');
-    return new Framework_Templating_Factory($type);
+    $type = $di->get('Params')->getParams('templating');
+    $factory = new Framework_Templating_Factory($type);
+    $factory->initTemplater();
+    return $factory->getTemplater();
 });
 
 $di->set('Request', function() {
@@ -21,7 +22,6 @@ try {
 } catch (Framework_Exception_InvalidArgument $e) {
     echo $e->getMessage();
 } catch (Framework_Exception_Page $e) {
-    $error = new App_Base_Controller_404();
-    $error->view();
+    echo $e->getMessage();
 }
 

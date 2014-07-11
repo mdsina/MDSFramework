@@ -9,7 +9,7 @@
 /**
  * Class App_Model_Main
  */
-class App_Model_Main extends App_Model_Abstract
+class App_Model_Main extends Framework_Base_Model
 {
     protected $_search;
 

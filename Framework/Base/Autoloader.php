@@ -113,7 +113,7 @@ class Framework_Base_Autoloader
      */
     public function unRegister()
     {
-        spl_autoload_unregister([$this, 'loadClass']);
+        spl_autoload_unregister([$this, 'load']);
     }
 
 
@@ -125,12 +125,12 @@ class Framework_Base_Autoloader
      */
     public function load($className)
     {
-        $fullNamespace = $this->_namespace . $this->_namespaceSeparator;
+        $fullNamespace = $this->_namespace . $this->getNamespaceSeparator();
 
         if (null === $this->_namespace || $fullNamespace === substr($className, 0, strlen($fullNamespace))) {
             $fileName = '';
 
-            if (false !== ($lastNsPos = strripos($className, $this->_namespaceSeparator))) {
+            if (false !== ($lastNsPos = strripos($className, $this->getNamespaceSeparator()))) {
                 $namespace = substr($className, 0, $lastNsPos);
                 $className = substr($className, $lastNsPos + 1);
                 $fileName = str_replace(
@@ -140,7 +140,7 @@ class Framework_Base_Autoloader
                     ) . DIRECTORY_SEPARATOR;
             }
 
-            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
+            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->getFileExtension();
             $filePath  = stream_resolve_include_path($fileName);
 
             if ($filePath) {

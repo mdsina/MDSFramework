@@ -7,9 +7,5 @@ $routes = array(
         'google',
         'yandex',
         ''
-    ],
-    'App_Controller_Energo' => [
-        'energy',
-        'energo'
     ]
 );

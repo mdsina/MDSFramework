@@ -10,7 +10,13 @@ class Framework_Templating_Factory
     /**
      * @var Framework_Templating_Interface
      */
-    protected $_templater;
+    private $_templater;
+
+
+    /**
+     * @var string
+     */
+    private $_type;
 
 
     /**
@@ -18,12 +24,7 @@ class Framework_Templating_Factory
      */
     public function __construct($type)
     {
-        $defaultTemplater = 'Framework_Templating_Native';
-        if (class_exists('Framework_Templating_' . $type)) {
-            $defaultTemplater = 'Framework_Templating_' . $type;
-        }
-
-        $this->_templater = new $defaultTemplater;
+        $this->setType($type);
     }
 
 
@@ -39,13 +40,54 @@ class Framework_Templating_Factory
 
 
     /**
-     * Render template
+     * get templater
      *
-     * @param string $template
-     * @param array $data
+     * @return Framework_Templating_Interface
      */
-    public function render($template, array $data)
+    public function getTemplater()
     {
-        $this->_templater->render($template, $data);
+        return $this->_templater;
+    }
+
+
+    /**
+     * Get type of templater
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+
+
+    /**
+     * set templater type
+     *
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->_type = $type;
+    }
+
+
+    /**
+     * Initialize templater by type
+     *
+     * @param string $type
+     */
+    public function initTemplater($type = null)
+    {
+        if (empty($type)) {
+            $type =  $this->getType();
+        }
+
+        $defaultTemplater = 'Framework_Templating_Native';
+        if (class_exists('Framework_Templating_' . $type)) {
+            $defaultTemplater = 'Framework_Templating_' . $type;
+        }
+
+        $this->_templater = new $defaultTemplater;
     }
 }

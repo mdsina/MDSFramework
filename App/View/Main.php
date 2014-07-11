@@ -9,12 +9,14 @@
 /**
  * Class App_View_Main
  */
-class App_View_Main extends App_View_Abstract
+class App_View_Main extends Framework_Base_View
 {
 
     public function __construct()
     {
-        $this->_templater = new Framework_Templating_Factory('Native');
+        $factory = new Framework_Templating_Factory('Native');
+        $factory->initTemplater();
+        $this->setTemplater($factory->getTemplater());
     }
 
     /**

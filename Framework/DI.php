@@ -43,7 +43,7 @@ class Framework_Di
      * @return mixed - return anonymous function result
      * @throws Framework_Exception_InvalidArgument
      */
-    public function get($serviceName)
+    public function getNew($serviceName)
     {
         if (!isset($serviceName, $this->_services)) {
             throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
@@ -60,7 +60,7 @@ class Framework_Di
      * @return callable
      * @throws Framework_Exception_InvalidArgument
      */
-    public function getStatic($serviceName)
+    public function get($serviceName)
     {
         if (!isset($serviceName, $this->_services)) {
             throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
