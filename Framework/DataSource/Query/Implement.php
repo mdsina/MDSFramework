@@ -135,8 +135,12 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * @param array|string $fields
      * @return Framework_DataSource_Query_Implement
      */
-    public function select(array $fields)
+    public function select($fields)
     {
+        if (!is_array($fields)) {
+            $fields = array($fields);
+        }
+
         $this->clear();
 
         $this->_selectedFields = $fields;
@@ -149,11 +153,17 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
     /**
      * delete fields from db
      *
+     * $fields = ['a', 'b' ...] || $fields = 'a'
+     *
      * @param array|string $fields
      * @return Framework_DataSource_Query_Implement
      */
-    public function delete(array $fields)
+    public function delete($fields)
     {
+        if (!is_array($fields)) {
+            $fields = array($fields);
+        }
+
         $this->clear();
 
         $this->_selectedFields = $fields;
@@ -164,11 +174,19 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
 
 
     /**
+     * Update data
+     *
+     * $fields = ['field1' => 'value'...]
+     *
      * @param array $fields
      * @return Framework_DataSource_Query_Implement
      */
-    public function update(array $fields)
+    public function update($fields)
     {
+        if (!is_array($fields)) {
+            $fields = array($fields);
+        }
+
         $this->clear();
 
         $this->_selectedFields = $fields;
@@ -179,6 +197,10 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
 
 
     /**
+     * Insert data
+     *
+     * $fields = ['field1' => 'value'...]
+     *
      * @param array $fields
      * @return Framework_DataSource_Query_Implement
      */
@@ -223,6 +245,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
 
         return $this;
     }
+
 
     /**
      * Limit query result

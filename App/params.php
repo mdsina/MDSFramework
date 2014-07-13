@@ -3,8 +3,11 @@
 $params = [
     'mysql' => [
         'host' => 'localhost',
+        'port' => '',
         'login' => '',
-        'password' => ''
+        'password' => '',
+        'db' => '',
+        'provider' => 'mysql'
     ],
 
     'templating' => 'Smarty',

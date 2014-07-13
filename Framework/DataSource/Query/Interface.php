@@ -10,9 +10,9 @@ interface Framework_DataSource_Query_Interface
     public function where($field, $value = null);
     public function groupBy($groups);
     public function orderBy($group);
-    public function select(array $fields);
-    public function delete(array $fields);
-    public function update(array $fields);
+    public function select($fields);
+    public function delete($fields);
+    public function update($fields);
     public function insert(array $fields);
     public function either();
     public function collection($collections);

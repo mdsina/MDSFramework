@@ -7,7 +7,5 @@
 interface Framework_DataSource_Connection_Interface
 {
     public function getConnection();
-    public function setConnection();
-    public function selectDataBase();
-
+    public function setConnection($connection = null);
 }

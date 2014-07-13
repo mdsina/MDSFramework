@@ -6,11 +6,37 @@
 
 class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implement
 {
-    protected $_lastQuery;
 
+    /**
+     * @var PDO
+     */
+    protected $_connection;
+
+
+    /**
+     * Constructor, set connection object
+     *
+     * @param PDO $connection
+     */
+    public function __construct($connection)
+    {
+        $this->_connection = $connection;
+    }
+
+
+    /**
+     * proceed query
+     *
+     * @return array|void
+     */
     public function query()
     {
-        return $this->_prepareQuery();
+        $sth = $this->_connection->prepare($this->_prepareQuery());
+        $sth->execute(array_values($this->_where));
+
+        $result = $sth->fetchAll();
+
+        return $result;
     }
 
 
@@ -21,7 +47,7 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
      * @param string $type
      * @return mixed
      */
-    public static function _escapeData($data, $type)
+    private function _escapeData($data, $type)
     {
         if (empty($data)) {
             return [];
@@ -38,7 +64,9 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         }
 
         $data = Framework_Base_Validator::escapeData($data, $type);
-        $data = mysql_real_escape_string($data);
+
+        //maybe need more abstraction for quote, because not all PDO drivers provide it
+        $data = $this->_connection->quote($data);
 
         return $data;
     }
@@ -172,12 +200,8 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         $query = 'WHERE ';
         $index = 1;
 
-        foreach ($this->_where as $field => $value) {
-            if (!is_array($value)) {
-                $value = array($value);
-            }
-
-            $query .= preg_replace('/\?/', implode(',', $value), $field) . ' ';
+        foreach ($this->_where as $field) {
+            $query .= $field . ' ';
 
             if ($index != $this->_whereCount) {
                 if (in_array($index, $this->_orStack)) {
@@ -193,6 +217,12 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         return $query;
     }
 
+
+    /**
+     * Prepare data to full SQL query
+     *
+     * @return string
+     */
     private function _prepareQuery()
     {
         if (empty($this->_collection)) {

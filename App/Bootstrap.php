@@ -20,6 +20,12 @@ $di->set('Request', function() {
    return new Framework_Request();
 });
 
+$di->set('MySQL', function() use ($di) {
+    $connectionParams = $di->get('Params')->getParams('mysql');
+    $provider = new Framework_DataSource_Provider('MySQL', $connectionParams);
+    return $provider->getQueryProvider();
+});
+
 try {
     App_Router::getInstance()->run($di);
 } catch (Framework_Exception_InvalidArgument $e) {
