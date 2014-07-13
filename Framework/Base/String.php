@@ -28,4 +28,30 @@ class Framework_Base_String
         $str = $firstLetter . $strEnd;
         return $str;
     }
+
+
+    /**
+     * Implode 1 level array to string likes 'foo = bar, fez = baz'
+     *
+     * @param array $array
+     * @param string $delimiter
+     * @param string $operator
+     * @return string
+     */
+    public static function assocImplode(array $array = [], $delimiter = ', ', $operator = '=')
+    {
+        $result = implode(
+            $delimiter,
+            array_map(
+                function ($o, $v, $k) {
+                    return sprintf('%s%s%s', $k, $o, $v);
+                },
+                array($operator),
+                $array,
+                array_keys($array)
+            )
+        );
+
+        return $result;
+    }
 }

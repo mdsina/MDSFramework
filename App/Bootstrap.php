@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors','On');
+error_reporting(E_ALL);
+
 $di = new Framework_Di();
 
 $di->set('Params', function() {

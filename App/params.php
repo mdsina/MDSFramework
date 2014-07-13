@@ -7,7 +7,7 @@ $params = [
         'password' => ''
     ],
 
-    'templating' => 'XSLT',
+    'templating' => 'Smarty',
 
     'routes_file' => 'App/routes.php',
 
