@@ -34,9 +34,25 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         $sth = $this->_connection->prepare($this->_prepareQuery());
         $sth->execute(array_values($this->_where));
 
-        $result = $sth->fetchAll();
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+
+    /**
+     * proceed query by generator
+     *
+     * @return Generator
+     */
+    public function getGenerator()
+    {
+        $sth = $this->_connection->prepare($this->_prepareQuery());
+        $sth->execute(array_values($this->_where));
+
+        while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+            yield $row;
+        }
     }
 
 
@@ -225,6 +241,10 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
      */
     private function _prepareQuery()
     {
+        if (!empty($this->_query)) {
+            return $this->_query;
+        }
+
         if (empty($this->_collection)) {
             return '';
         }
