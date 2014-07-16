@@ -26,6 +26,10 @@ $di->set('MySQL', function() use ($di) {
     return $provider->getQueryProvider();
 });
 
+$di->set('Cookie', function () {
+   return new Framework\Cookie\CookieManager();
+});
+
 try {
     App_Router::getInstance()->run($di);
 } catch (Framework_Exception_InvalidArgument $e) {
