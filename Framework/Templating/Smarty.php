@@ -6,17 +6,19 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\Templating;
 
 /**
  * Base class for working with smarty. Only API and initialize.
  * Get Smarty object for work, because to support native work with
  * different versions of Smarty really hard and it's a bad idea.
  *
- * Class Framework_Templating_Smarty
+ * Class Smarty
+ * @package Framework\Templating
  */
-class Framework_Templating_Smarty implements Framework_Templating_Interface
+class Smarty implements TemplatingInterface
 {
-    use Framework_Templating_Base;
+    use Base;
 
     /**
      * @var Smarty
@@ -36,7 +38,7 @@ class Framework_Templating_Smarty implements Framework_Templating_Interface
         $smartyParams = $this->getParams();
 
         require($smartyParams['path'] . $smartyParams['file']);
-        $this->setSmarty(new Smarty());
+        $this->setSmarty(new \Smarty());
 
         $this->getSmarty()->template_dir = $smartyParams['template_dir'];
         $this->getSmarty()->compile_dir  = $smartyParams['compile_dir'];
@@ -75,7 +77,7 @@ class Framework_Templating_Smarty implements Framework_Templating_Interface
      *
      * @param Smarty $smarty
      */
-    public function setSmarty(Smarty $smarty)
+    public function setSmarty(\Smarty $smarty)
     {
         $this->_smarty = $smarty;
     }

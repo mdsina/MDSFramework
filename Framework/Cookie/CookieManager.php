@@ -6,6 +6,10 @@
 
 namespace Framework\Cookie;
 
+/**
+ * Class CookieManager
+ * @package Framework\Cookie
+ */
 class CookieManager
 {
     protected $_cookies = [];

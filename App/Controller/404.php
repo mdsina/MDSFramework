@@ -5,15 +5,18 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class App_Controller_404 extends Framework_Base_Controller
+use Framework\MVC\Controller;
+use Framework\Di\Di;
+
+class App_Controller_404 extends Controller
 {
-    public function __construct(Framework_Di $di)
+    public function __construct(Di $di)
     {
         $this->setView(new App_View_404($di->getNew('Templating')));
         return $this;
     }
 
-    public function view()
+    public function viewAction()
     {
         $this->getView()->render('templates/404.tpl');
     }

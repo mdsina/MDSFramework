@@ -4,7 +4,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Base_String
+namespace Framework\Base;
+
+/**
+ * Class String
+ * @package Framework\Base
+ */
+class String
 {
 
     /**

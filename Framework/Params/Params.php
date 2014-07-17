@@ -5,7 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Params {
+namespace Framework\Params;
+
+/**
+ * Class Params
+ * @package Framework\Params
+ */
+class Params {
 
     /**
      * @var array
@@ -28,7 +34,7 @@ class Framework_Params {
                 return false;
             }
 
-            require_once('params.php');
+            require_once('Params.php');
 
             if (is_null($params)) {
                 return false;

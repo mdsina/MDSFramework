@@ -4,7 +4,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implement
+namespace Framework\DataSource\Query;
+
+/**
+ * Class MySQL
+ * @package Framework\DataSource\Query
+ */
+class MySQL extends Implement
 {
 
     /**
@@ -34,7 +40,7 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         $sth = $this->_connection->prepare($this->_prepareQuery());
         $sth->execute(array_values($this->_where));
 
-        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
         return $result;
     }
@@ -50,7 +56,7 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         $sth = $this->_connection->prepare($this->_prepareQuery());
         $sth->execute(array_values($this->_where));
 
-        while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+        while ($row = $sth->fetch(\PDO::FETCH_ASSOC)) {
             yield $row;
         }
     }
@@ -79,7 +85,7 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
             return $result;
         }
 
-        $data = Framework_Base_Validator::escapeData($data, $type);
+        $data = \Framework\Validate\Validator::escapeData($data, $type);
 
         //maybe need more abstraction for quote, because not all PDO drivers provide it
         $data = $this->_connection->quote($data);
@@ -151,7 +157,7 @@ class Framework_DataSource_Query_MySQL extends Framework_DataSource_Query_Implem
         $selectKeys = $this->_escapeData(array_keys($this->_selectedFields), 'str');
         $selectValues = $this->_escapeData(array_values($this->_selectedFields), 'str');
         $select = array_combine($selectKeys, $selectValues);
-        $select = Framework_Base_String::assocImplode($select);
+        $select = \Framework\Base\String::assocImplode($select);
 
         $query .= $select . ' ';
 

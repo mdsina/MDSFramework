@@ -4,13 +4,18 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\DataSource;
 
-class Framework_DataSource_Provider
+/**
+ * Class Provider
+ * @package Framework\DataSource
+ */
+class Provider
 {
     protected $_connection;
 
     /**
-     * @var Framework_DataSource_Query_Interface
+     * @var QueryInterface
      */
     protected $_query;
 
@@ -24,14 +29,14 @@ class Framework_DataSource_Provider
      */
     public function __construct($queryProvider, array $params = [], $connectionProvider = 'PDO')
     {
-        $defaultQueryProvider = 'Framework_DataSource_Query_MySQL';
+        $defaultQueryProvider = 'MySQL';
 
-        if (class_exists('Framework_DataSource_Connection_' . $connectionProvider)) {
-            $connectionProvider = 'Framework_DataSource_Connection_' . $connectionProvider;
+        if (class_exists('\\Framework\\DataSource\\Connection\\' . $connectionProvider . 'Connection')) {
+            $connectionProvider = '\\Framework\\DataSource\\Connection\\' . $connectionProvider . 'Connection';
         }
 
-        if (class_exists('Framework_DataSource_Query_' . $queryProvider)) {
-            $defaultQueryProvider = 'Framework_DataSource_Query_' . $queryProvider;
+        if (class_exists('\\Framework\\DataSource\\Query\\' . $queryProvider)) {
+            $defaultQueryProvider = '\\Framework\\DataSource\\Query\\' . $queryProvider;
         }
 
         $this->_connection = new $connectionProvider($params);
@@ -42,7 +47,7 @@ class Framework_DataSource_Provider
     /**
      * Get query provider
      *
-     * @return Framework_DataSource_Query_Interface
+     * @return QueryInterface
      */
     public function getQueryProvider()
     {

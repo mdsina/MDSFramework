@@ -5,16 +5,18 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+use Framework\MVC\View;
+use Framework\Templating\Factory;
 
 /**
  * Class App_View_Main
  */
-class App_View_Main extends Framework_Base_View
+class App_View_Main extends View
 {
 
     public function __construct(array $params = [])
     {
-        $factory = new Framework_Templating_Factory('Smarty', $params);
+        $factory = new Factory('Smarty', $params);
         $factory->initTemplater();
         $this->setTemplater($factory->getTemplater());
         $this->getTemplater()->setCaching(false);

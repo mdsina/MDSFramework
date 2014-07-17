@@ -5,15 +5,18 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class App_Controller_Main extends Framework_Base_Controller
+use Framework\MVC\Controller;
+use Framework\Di\Di;
+
+class App_Controller_Main extends Controller
 {
 
     /**
      * Constructor
      *
-     * @param Framework_Di $di
+     * @param Di $di
      */
-    public function __construct(Framework_Di $di)
+    public function __construct(Di $di)
     {
         $this->setDi($di);
         $this->setModel(new App_Model_Main());

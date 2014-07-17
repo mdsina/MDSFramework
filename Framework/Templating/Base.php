@@ -4,8 +4,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\Templating;
 
-trait Framework_Templating_Base
+/**
+ * Class Base
+ * @package Framework\Templating
+ */
+trait Base
 {
     private $_params = [];
 

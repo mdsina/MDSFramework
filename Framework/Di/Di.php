@@ -5,7 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Di
+namespace Framework\Di;
+
+/**
+ * Class Di
+ * @package Framework\Di
+ */
+class Di
 {
 
     /**
@@ -46,7 +52,7 @@ class Framework_Di
     public function getNew($serviceName)
     {
         if (!isset($serviceName, $this->_services)) {
-            throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
+            throw new \Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
         }
 
         return $this->_services[$serviceName]($this);
@@ -63,7 +69,7 @@ class Framework_Di
     public function get($serviceName)
     {
         if (!isset($serviceName, $this->_services)) {
-            throw new Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
+            throw new \Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
         }
 
         if (!isset($this->_instances[$serviceName])) {

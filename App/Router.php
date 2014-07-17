@@ -5,6 +5,7 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+use Framework\Di\Di;
 
 /**
  * Class App_Router
@@ -21,7 +22,7 @@ class App_Router
 
 
     /**
-     * @var Framework_Di
+     * @var Di
      */
     protected $_di;
 
@@ -43,10 +44,10 @@ class App_Router
     /**
      * Start routing
      *
-     * @param Framework_Di $di
+     * @param Di $di
      * @throws Framework_Exception_Page
      */
-    public function run(Framework_Di $di)
+    public function run(Di $di)
 	{
         $this->_di = $di;
         $request = $di->get('Request');

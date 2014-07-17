@@ -5,11 +5,12 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+use Framework\MVC\Model;
 
 /**
  * Class App_Model_Main
  */
-class App_Model_Main extends Framework_Base_Model
+class App_Model_Main extends Model
 {
     protected $_search;
 

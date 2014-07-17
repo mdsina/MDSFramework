@@ -6,10 +6,16 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Templating_Native implements Framework_Templating_Interface
+namespace Framework\Templating;
+
+/**
+ * Class Native
+ * @package Framework\Templating
+ */
+class Native implements TemplatingInterface
 {
 
-    use Framework_Templating_Base;
+    use Base;
 
     /**
      * @param string $template

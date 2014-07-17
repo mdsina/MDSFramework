@@ -5,11 +5,14 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\MVC;
+use Framework\Di\Di;
 
 /**
- * Class Framework_Base_Controller
+ * Class Controller
+ * @package Framework\MVC
  */
-abstract class Framework_Base_Controller
+abstract class Controller
 {
     private $_model;
     private $_view;
@@ -20,7 +23,7 @@ abstract class Framework_Base_Controller
      *
      * @param Framework_Request $request
      */
-    public function __construct(Framework_Di $di)
+    public function __construct(Di $di)
     {
         $this->_di = $di;
     }
@@ -31,7 +34,7 @@ abstract class Framework_Base_Controller
      *
      * @param Framework_Di $di
      */
-    protected function setDi(Framework_Di $di)
+    protected function setDi(Di $di)
     {
         $this->_di = $di;
     }
@@ -51,9 +54,9 @@ abstract class Framework_Base_Controller
     /**
      * set View
      *
-     * @param Framework_Base_View $view
+     * @param View $view
      */
-    protected function setView(Framework_Base_View $view)
+    protected function setView(View $view)
     {
         $this->_view = $view;
     }
@@ -62,7 +65,7 @@ abstract class Framework_Base_Controller
     /**
      * get View
      *
-     * @return Framework_Base_View
+     * @return View
      */
     protected function getView()
     {
@@ -73,9 +76,9 @@ abstract class Framework_Base_Controller
     /**
      * set Model
      *
-     * @param Framework_Base_Model $model
+     * @param Model $model
      */
-    protected function setModel(Framework_Base_Model $model)
+    protected function setModel(Model $model)
     {
         $this->_model = $model;
     }
@@ -84,7 +87,7 @@ abstract class Framework_Base_Controller
     /**
      * get Model
      *
-     * @return Framework_Base_Model
+     * @return Model
      */
     protected function getModel()
     {
@@ -116,7 +119,7 @@ abstract class Framework_Base_Controller
             return false;
         }
 
-        $reflection = new ReflectionMethod($this, $name);
+        $reflection = new \ReflectionMethod($this, $name);
 
         if (!$reflection->isPublic()) {
             return false;

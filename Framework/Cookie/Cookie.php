@@ -6,6 +6,10 @@
 
 namespace Framework\Cookie;
 
+/**
+ * Class Cookie
+ * @package Framework\Cookie
+ */
 class Cookie implements CookieInterface
 {
 

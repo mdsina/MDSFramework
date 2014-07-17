@@ -5,11 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\Request;
 
 /**
- * Class Framework_Request
+ * Class Request
+ * @package Framework\Request
  */
-class Framework_Request
+class Request
 {
     /**
      * @var string

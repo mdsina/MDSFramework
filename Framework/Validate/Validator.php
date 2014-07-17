@@ -6,8 +6,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\Validate;
 
-class Framework_Base_Validator
+/**
+ * Class Validator
+ * @package Framework\Validate
+ */
+class Validator
 {
 
     /**

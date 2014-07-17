@@ -5,8 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\DataSource\Connection;
 
-class Framework_DataSource_Connection_PDO implements Framework_DataSource_Connection_Interface
+/**
+ * Class PDOConnection
+ * @package Framework\DataSource\Connection
+ */
+class PDOConnection implements ConnectionInterface
 {
     /**
      * Pointer to connection

@@ -6,15 +6,19 @@
  */
 
 
+namespace Framework\MVC;
+use Framework\Templating\TemplatingInterface;
+
 /**
- * Class Framework_Base_View
+ * Class View
+ * @package Framework\MVC
  */
-abstract class Framework_Base_View
+abstract class View
 {
     private $_data;
 
     /**
-     * @var Framework_Templating_Interface
+     * @var TemplatingInterface
      */
     private $_templater;
 
@@ -24,7 +28,7 @@ abstract class Framework_Base_View
      *
      * @param null|array $data
      */
-    public function __construct(Framework_Templating_Interface $templater, $data = null)
+    public function __construct(TemplatingInterface $templater, $data = null)
     {
         $this->_templater = $templater;
 
@@ -89,7 +93,7 @@ abstract class Framework_Base_View
      *
      * @param Framework_Templating_Factory $templater
      */
-    protected function setTemplater(Framework_Templating_Interface $templater)
+    protected function setTemplater(TemplatingInterface $templater)
     {
         $this->_templater = $templater;
     }

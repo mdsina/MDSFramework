@@ -5,11 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\MVC;
 
 /**
- * Class Framework_Base_Model
+ * Class Model
+ * @package Framework\MVC
  */
-abstract class Framework_Base_Model
+abstract class Model
 {
     protected $_di;
 

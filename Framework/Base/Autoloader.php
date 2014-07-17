@@ -5,11 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\Base;
 
 /**
- * Class Framework_Base_Autoloader
+ * Class Autoloader
+ * @package Framework\Base
  */
-class Framework_Base_Autoloader
+class Autoloader
 {
     private $_fileExtension = '.php';
     private $_namespace;

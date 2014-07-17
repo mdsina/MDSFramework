@@ -4,11 +4,17 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Templating_Factory
+namespace Framework\Templating;
+
+/**
+ * Class Factory
+ * @package Framework\Templating
+ */
+class Factory
 {
 
     /**
-     * @var Framework_Templating_Interface
+     * @var TemplatingInterface
      */
     private $_templater;
 
@@ -35,9 +41,9 @@ class Framework_Templating_Factory
     /**
      * Change templater
      *
-     * @param Framework_Templating_Interface $templater
+     * @param TemplatingInterface $templater
      */
-    public function setTemplater(Framework_Templating_Interface $templater)
+    public function setTemplater(TemplatingInterface $templater)
     {
         $this->_templater = $templater;
     }
@@ -46,7 +52,7 @@ class Framework_Templating_Factory
     /**
      * get templater
      *
-     * @return Framework_Templating_Interface
+     * @return TemplatingInterface
      */
     public function getTemplater()
     {
@@ -87,9 +93,11 @@ class Framework_Templating_Factory
             $type =  $this->getType();
         }
 
-        $defaultTemplater = 'Framework_Templating_Native';
-        if (class_exists('Framework_Templating_' . $type)) {
-            $defaultTemplater = 'Framework_Templating_' . $type;
+        // WTF?
+        $defaultTemplater = '\\Framework\\Templating\\Native';
+
+        if (class_exists('\\Framework\\Templating\\' . $type)) {
+            $defaultTemplater = '\\Framework\\Templating\\' . $type;
         }
 
         $this->_templater = new $defaultTemplater;

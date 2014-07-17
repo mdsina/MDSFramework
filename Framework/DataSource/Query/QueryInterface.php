@@ -5,7 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-interface Framework_DataSource_Query_Interface
+namespace Framework\DataSource\Query;
+
+/**
+ * Interface QueryInterface
+ * @package Framework\DataSource\Query
+ */
+interface QueryInterface
 {
     public function where($field, $value = null);
     public function groupBy($groups);

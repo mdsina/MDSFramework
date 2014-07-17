@@ -8,7 +8,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-class Framework_Base_XML
+namespace Framework\Base;
+
+/**
+ * Class XML
+ * @package Framework\Base
+ */
+class XML
 {
     protected $_version = '1.0';
     protected $_encoding = 'UTF-8';

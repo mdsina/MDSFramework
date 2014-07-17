@@ -6,16 +6,17 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace Framework\DataSource\Query;
+
 /**
- * Class Framework_DataSource_Query_Implement
- *
  * Some abstraction for different interfaces for work with query
- *
  * Implementation itself allows the use of a fluid interface, which can sometimes even easier
- *
  * Like this: $this->select(...)->from(...)->where(...)->either()->where()->groupBy(..);
+ *
+ * Class Implement
+ * @package Framework\DataSource\Query
  */
-class Framework_DataSource_Query_Implement implements Framework_DataSource_Query_Interface
+class Implement implements QueryInterface
 {
     /**
      * Where fields, likes ['a >'] = 2, ['b IN(?)'] = [1,2,3,4,5] ...
@@ -96,7 +97,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      *
      * @param string|array $field
      * @param array|string $value
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function where($field, $value = null)
     {
@@ -119,7 +120,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
 
 
     /**
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function either()
     {
@@ -133,7 +134,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * select fields from db
      *
      * @param array|string $fields
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function select($fields)
     {
@@ -156,7 +157,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * $fields = ['a', 'b' ...] || $fields = 'a'
      *
      * @param array|string $fields
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function delete($fields)
     {
@@ -179,7 +180,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * $fields = ['field1' => 'value'...]
      *
      * @param array $fields
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function update($fields)
     {
@@ -202,7 +203,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * $fields = ['field1' => 'value'...]
      *
      * @param array $fields
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function insert(array $fields)
     {
@@ -219,7 +220,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * Group result by field
      *
      * @param string $fields
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function groupBy($fields)
     {
@@ -237,7 +238,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * Sort result by field
      *
      * @param string $field
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function orderBy($field)
     {
@@ -251,7 +252,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * Limit query result
      *
      * @param int|string $limitCount
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function limit($limitCount = 100)
     {
@@ -267,7 +268,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * IMPORTANT: security of your raw queries lies with you
      *
      * @param string $query
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function raw($query)
     {
@@ -283,7 +284,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
      * Select collection or table from database
      *
      * @param string $collection
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     public function collection($collection)
     {
@@ -307,7 +308,7 @@ class Framework_DataSource_Query_Implement implements Framework_DataSource_Query
     /**
      * Clear state
      *
-     * @return Framework_DataSource_Query_Implement
+     * @return Implement
      */
     private function clear()
     {
