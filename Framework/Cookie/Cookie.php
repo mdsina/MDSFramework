@@ -76,21 +76,38 @@ class Cookie implements CookieInterface
 
 
     /**
+     * DateTime pattern
+     *
+     * Need to convert human date to timestamp
+     * Default pattern: 'd-m-Y H:i:s'
+     *
+     * @var string
+     */
+    protected $_dateTimePattern = 'd-m-Y H:i:s';
+
+
+    /**
      * Create cookie
      *
      * @param string $name
      * @param string $value
-     * @param int $expirationDate - timestamp
+     * @param string $expirationDate
      * @param string $domain
      * @param string $path
      * @param bool $secure
      * @param bool $httpOnly
      */
     public function __construct(
-        $name, $value = '', $expirationDate = 0, $domain = '', $path = '', $secure = false, $httpOnly = false
+        $name, $value = '', $expirationDate = '0', $domain = '', $path = '', $secure = false, $httpOnly = false
     ) {
         $this->_name = (string) $name;
+
+        if (!is_string($expirationDate)) {
+            throw new \Framework\Exception\InvalidArgument('Invalid argument type. Must be string');
+        }
+
         $expirationDate = !empty($value['life_time']) ? $value['life_time'] : $expirationDate;
+        $expirationDate = (string) $expirationDate;
 
         if (!empty($value['life_time'])) {
             unset ($value['life_time']);
@@ -210,8 +227,27 @@ class Cookie implements CookieInterface
      */
     public function setExpirationDate($date)
     {
-        $this->_expirationDate = $date;
+        $expirationDate = gmp_strval(gmp_init($date));
+
+        if (strlen($expirationDate) < strlen($date)) {
+            $expirationDate = \DateTime::createFromFormat($this->_dateTimePattern, $this->_expirationDate);
+            $expirationDate = $expirationDate->getTimestamp();
+        }
+
+        $this->_expirationDate = $expirationDate;
         $this->_value['life_time'] = $this->_expirationDate;
+    }
+
+
+    /**
+     * DateTime pattern
+     *
+     * @param string $pattern
+     */
+    public function setDateTimePattern($pattern)
+    {
+        $pattern = (string) $pattern;
+        $this->_dateTimePattern = $pattern;
     }
 
 

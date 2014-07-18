@@ -55,6 +55,10 @@ class App_Search_Google extends App_Search_Abstract
 
             $json = json_decode($body, true);
 
+            if (empty($json)) {
+                return $result;
+            }
+
             foreach ($json['responseData']['results'] as $resultJson) {
                 $resultGoogle['url'] = $resultJson['url'];
                 $resultGoogle['title'] = $resultJson['title'];

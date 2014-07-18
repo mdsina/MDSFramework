@@ -31,6 +31,9 @@ $di->set('Cookie', function () {
    return new Framework\Cookie\CookieManager();
 });
 
+$di->get('Cookie')->create('test6', '', '123121251314124112');
+$di->get('Cookie')->activate('test6');
+
 try {
     App_Router::getInstance()->run($di);
 } catch (Framework_Exception_InvalidArgument $e) {

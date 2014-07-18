@@ -4,9 +4,9 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-namespace Framework\Exception;
+namespace Framework\Debug;
 
-class InvalidArgument extends \Exception
-{
 
-}
+class Debug {
+
+} 
