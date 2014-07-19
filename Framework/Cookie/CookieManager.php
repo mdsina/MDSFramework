@@ -13,20 +13,23 @@ namespace Framework\Cookie;
 class CookieManager
 {
     protected $_cookies = [];
+    protected $_key = '';
 
 
     /**
      * Create cookies from global $_COOKIES
      */
-    public function __construct()
+    public function __construct($cryptKey)
     {
         if (empty($_COOKIE)) {
             return;
         }
 
+        $this->_key = $cryptKey;
+
         foreach ($_COOKIE as $name => $value) {
-            $cookieValue = @unserialize($value);
-            $this->_cookies[$name] = new Cookie($name, !$cookieValue ? $value : $cookieValue);
+            $cookieValue = @unserialize(\Framework\Crypt\Decrypt::decrypt($value, $this->_key));
+            $this->_cookies[$name] = new Cookie($this->_key, $name, !$cookieValue ? $value : $cookieValue);
         }
     }
 
@@ -84,7 +87,9 @@ class CookieManager
             return false;
         }
 
-        $this->_cookies[$name] = new Cookie($name, $value, $expirationDate, $domain, $path, $secure, $httpOnly);
+        $this->_cookies[$name] = new Cookie(
+            $this->_key, $name, $value, $expirationDate, $domain, $path, $secure, $httpOnly
+        );
 
         return true;
     }
@@ -180,7 +185,9 @@ class CookieManager
             return false;
         }
 
-        $this->_cookies[$name] = new Cookie($name, $value, $expirationDate, $domain, $path, $secure, $httpOnly);
+        $this->_cookies[$name] = new Cookie(
+            $this->_key, $name, $value, $expirationDate, $domain, $path, $secure, $httpOnly
+        );
 
         return true;
     }

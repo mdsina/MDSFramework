@@ -13,6 +13,8 @@ namespace Framework\Base;
 class String
 {
 
+    const INT_REGEX = '/[^0-9]/';
+
     /**
      * Return string with first uppercase symbol
      *
@@ -59,5 +61,11 @@ class String
         );
 
         return $result;
+    }
+
+
+    public static function itoa($number)
+    {
+        return preg_replace(static::INT_REGEX, '', $number);
     }
 }

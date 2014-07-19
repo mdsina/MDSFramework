@@ -87,8 +87,17 @@ class Cookie implements CookieInterface
 
 
     /**
+     * Encryption key
+     *
+     * @var string
+     */
+    protected $_key;
+
+
+    /**
      * Create cookie
      *
+     * @param string $encryptionKey
      * @param string $name
      * @param string $value
      * @param string $expirationDate
@@ -98,20 +107,17 @@ class Cookie implements CookieInterface
      * @param bool $httpOnly
      */
     public function __construct(
-        $name, $value = '', $expirationDate = '0', $domain = '', $path = '', $secure = false, $httpOnly = false
+        $encryptionKey, $name, $value = '', $expirationDate = '0',
+        $domain = '', $path = '', $secure = false, $httpOnly = false
     ) {
         $this->_name = (string) $name;
-
-        if (!is_string($expirationDate)) {
-            throw new \Framework\Exception\InvalidArgument('Invalid argument type. Must be string');
-        }
-
         $expirationDate = !empty($value['life_time']) ? $value['life_time'] : $expirationDate;
-        $expirationDate = (string) $expirationDate;
 
         if (!empty($value['life_time'])) {
             unset ($value['life_time']);
         }
+
+        $this->_key = (string) $encryptionKey;
 
         $this->setValue($value);
         $this->setExpirationDate($expirationDate);
@@ -133,7 +139,7 @@ class Cookie implements CookieInterface
     public function activate()
     {
         $cookieName = $this->_name;
-        $cookieValue = serialize($this->_value);
+        $cookieValue = \Framework\Crypt\Encrypt::encrypt(serialize($this->_value), $this->_key);
 
         return setcookie(
             $cookieName, $cookieValue, $this->_expirationDate, $this->_path,
@@ -202,19 +208,13 @@ class Cookie implements CookieInterface
 
 
     /**
-     * Get data from $_COOKIE
+     * Get cookie value
      *
      * @return array
      */
-    public function getData()
+    public function getValue()
     {
-        if (empty($_COOKIE[$this->_name])) {
-            return [];
-        }
-
-        if (!empty($_COOKIE[$this->_name]['value'])) {
-            return $_COOKIE[$this->_name]['value'];
-        }
+        return $this->_value;
     }
 
 
@@ -227,9 +227,9 @@ class Cookie implements CookieInterface
      */
     public function setExpirationDate($date)
     {
-        $expirationDate = gmp_strval(gmp_init($date));
+        $expirationDate = \Framework\Base\String::itoa($date);
 
-        if (strlen($expirationDate) < strlen($date)) {
+        if (is_string($date) && (strlen($expirationDate) < strlen($date))) {
             $expirationDate = \DateTime::createFromFormat($this->_dateTimePattern, $this->_expirationDate);
             $expirationDate = $expirationDate->getTimestamp();
         }

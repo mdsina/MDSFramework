@@ -16,6 +16,6 @@ interface CookieInterface
     public function setValue($value);
     public function setName($value);
     public function getName();
-    public function getData();
+    public function getValue();
     public function setExpirationDate($expirationDate);
 }

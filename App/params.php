@@ -21,6 +21,10 @@ $params = [
         'compile_dir' => 'templates_c',
         'config_dir' => 'configs',
         'cache_dir' => 'cache'
+    ],
+
+    'cookie' => [
+        'encryption_key' => '@#!^%&(-=_+*#№?'
     ]
 
 ];
