@@ -55,6 +55,10 @@ class Di
             throw new \Framework_Exception_InvalidArgument(sprintf('Service "%s" is not defined.', $serviceName));
         }
 
+        if (!empty($this->_instances[$serviceName])) {
+            return clone $this->_instances[$serviceName];
+        }
+
         return $this->_services[$serviceName]($this);
     }
 
