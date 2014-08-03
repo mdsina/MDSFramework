@@ -64,7 +64,7 @@ class Di
 
 
     /**
-     * Call service statically
+     * Call service instance
      *
      * @param $serviceName
      * @return callable

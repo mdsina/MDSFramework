@@ -183,4 +183,15 @@ class Request
 
         return $this->_request;
     }
+
+
+    /**
+     * Get request time started in timestamp
+     *
+     * @return string
+     */
+    public static function getRequestTime()
+    {
+        return (string) $_SERVER['REQUEST_TIME'];
+    }
 }
