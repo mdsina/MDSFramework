@@ -5,12 +5,14 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\Model;
+
 use Framework\MVC\Model;
 
 /**
- * Class App_Model_Main
+ * Class Main
  */
-class App_Model_Main extends Model
+class Main extends Model
 {
     protected $_search;
 
@@ -29,7 +31,7 @@ class App_Model_Main extends Model
         switch ($params['api']) {
             case 'google' :
             default :
-                $this->_search = new App_Search_Google();
+                $this->_search = new \App\Search\Google();
                 break;
         }
 

@@ -1,7 +1,7 @@
 <?php
 
 $routes = array(
-    'App_Controller_Main' => [
+    'App\Controller\Main' => [
         'main',
         'search',
         'google',

@@ -1,0 +1,18 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:mdsina/MFL.git"
+        }
+    ],
+    "require": {
+        "smarty/smarty": "3.1.19",
+        "monolog/monolog": "1.*",
+        "MFL/MFL": "dev-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    }
+}

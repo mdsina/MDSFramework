@@ -5,13 +5,15 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\View;
+
 use Framework\MVC\View;
 use Framework\Templating\Factory;
 
 /**
- * Class App_View_Main
+ * Class Main
  */
-class App_View_Main extends View
+class Main extends View
 {
 
     public function __construct(array $params = [])

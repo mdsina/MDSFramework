@@ -5,14 +5,16 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\Controller;
+
 use Framework\MVC\Controller;
 use Framework\Di\Di;
 
-class App_Controller_404 extends Controller
+class NotFound extends Controller
 {
     public function __construct(Di $di)
     {
-        $this->setView(new App_View_404($di->getNew('Templating')));
+        $this->setView(new \App\View\NotFound($di->getNew('Templating')));
         return $this;
     }
 

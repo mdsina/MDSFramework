@@ -5,7 +5,9 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
-abstract class App_Search_Abstract
+namespace App\Search;
+
+abstract class ASearch
 {
 
     /**

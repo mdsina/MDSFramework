@@ -5,14 +5,15 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\Search;
 
 /**
- * Class App_Search_Google
+ * Class Google
  *
  * It's not good idea for using, because we can do it on client side without server side
  * TO-DO: remove from release
  */
-class App_Search_Google extends App_Search_Abstract
+class Google extends ASearch
 {
 
     // Using Google Search AJAX API, because we can make unlimited query for it

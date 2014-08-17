@@ -5,10 +5,12 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\Controller;
+
 use Framework\MVC\Controller;
 use Framework\Di\Di;
 
-class App_Controller_Main extends Controller
+class Main extends Controller
 {
 
     /**
@@ -19,8 +21,8 @@ class App_Controller_Main extends Controller
     public function __construct(Di $di)
     {
         $this->setDi($di);
-        $this->setModel(new App_Model_Main());
-        $this->setView(new App_View_Main($di->get('Params')->getParams('smarty')));
+        $this->setModel(new \App\Model\Main());
+        $this->setView(new \App\View\Main($di->get('Params')->getParams('smarty')));
     }
 
 

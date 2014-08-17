@@ -5,12 +5,13 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App;
 use Framework\Di\Di;
 
 /**
- * Class App_Router
+ * Class Router
  */
-class App_Router
+class Router
 {
 
     /**
@@ -53,20 +54,20 @@ class App_Router
         $request = $di->get('Request');
 
 		// Initialize default controller and action
-		$controllerName = $this->_getControllerName('App_Controller_404');
+		$controllerName = $this->_getControllerName('\App\Controller\NotFound');
 		$actionName = $request->getActionName('view');
 
 		// Try to create controller
         try {
             $controller = new $controllerName($di, $request);
-        } catch (Framework_Exception_Class $e) {
-            $error = new App_Controller_404($di);
+        } catch (\Framework_Exception_Class $e) {
+            $error = new Controller\NotFound($di);
             $error->view();
             exit();
         }
 
         if (!$controller->$actionName()) {
-            throw new Framework_Exception_Page(sprintf('OOps, action "%s" not found', $actionName));
+            throw new \Framework_Exception_Page(sprintf('OOps, action "%s" not found', $actionName));
         }
 	}
 

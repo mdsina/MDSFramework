@@ -5,12 +5,14 @@
  * @copyright Copyright (c) 2014, Daniil Mikhailov
  */
 
+namespace App\View;
+
 use Framework\MVC\View;
 
 /**
- * Class App_View_404
+ * Class NotFound
  */
-class App_View_404 extends View
+class NotFound extends View
 {
     public function render($template, $data = null)
     {
